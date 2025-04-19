@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/transactions")
@@ -32,5 +33,11 @@ public class TransactionController {
         transactionDTO.setAmount(transferRequestDTO.getAmount());
         transactionDTO.setTimestamp(LocalDateTime.now());
         return ResponseEntity.ok(transactionFacade.transferMoney(transactionDTO));
+    }
+
+    // Consultar historial de transacciones por número de cuenta
+    @GetMapping("/{accountNumber}")
+    public ResponseEntity<List<TransactionDTO>> getTransactionsForAccount(@PathVariable String accountNumber) {
+        return ResponseEntity.ok(transactionFacade.getTransactionsForAccount(accountNumber));
     }
 }
