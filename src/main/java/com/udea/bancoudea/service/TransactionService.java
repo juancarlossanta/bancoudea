@@ -51,6 +51,7 @@ public class TransactionService {
         transaction.setSenderAccountNumber(sender.getAccountNumber());
         transaction.setReceiverAccountNumber(receiver.getAccountNumber());
         transaction.setAmount(transactionDTO.getAmount());
+        transaction.setTimestamp(transactionDTO.getTimestamp());
         transaction= transactionRepository.save(transaction);
 
         //Devolver la transaccion creada como un DTO
@@ -71,6 +72,7 @@ public class TransactionService {
             dto.setSenderAccountNumber(transaction.getSenderAccountNumber());
             dto.setReceiverAccountNumber(transaction.getReceiverAccountNumber());
             dto.setAmount(transaction.getAmount());
+            dto.setTimestamp(transaction.getTimestamp());
             return dto;
         }).collect(Collectors.toList());
     }
